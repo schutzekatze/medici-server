@@ -1,12 +1,13 @@
 from django.http import Http404, HttpResponse
 from django.core.exceptions import PermissionDenied
+from django.conf import settings
 
 from .system import medici_system
 
 import os
 import configparser
 medici_config = configparser.ConfigParser()
-medici_config.read(os.path.dirname(os.path.abspath(__file__)) + '/system/medici_config/medici.cfg')
+medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.cfg'))
 
 USER_USERNAME_PARAMETER = medici_config['Communication']['user_username_parameter']
 USER_PASSWORD_PARAMETER = medici_config['Communication']['user_password_parameter']
