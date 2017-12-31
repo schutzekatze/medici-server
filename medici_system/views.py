@@ -17,8 +17,6 @@ RECEIPT_IMAGE_PARAMETER = medici_config['Communication']['receipt_image_paramete
 RECEIPT_TEXT_PARAMETER = medici_config['Communication']['receipt_text_parameter']
 RECEIPT_JSON_PARAMETER = medici_config['Communication']['receipt_json_parameter']
 
-SUCESS_MESSAGE = 'Success'
-
 def check_post(request):
     if request.method != 'POST':
         raise Http404
@@ -41,53 +39,57 @@ def receipt_image(request):
     mediciuser = check_auth(request)
 
     image = request.FILES[RECEIPT_IMAGE_PARAMETER]
-    medici_system.receipt_image(mediciuser, image)
+    response = medici_system.receipt_image(mediciuser, image)
 
-    return HttpResponse(SUCESS_MESSAGE)
+    return HttpResponse(response)
 
 def receipt_text(request):
     check_post(request)
     mediciuser = check_auth(request)
 
     text = request.POST[RECEIPT_TEXT_PARAMETER]
-    medici_system.receipt_text(mediciuser, text)
+    response = medici_system.receipt_text(mediciuser, text)
 
-    return HttpResponse(SUCESS_MESSAGE)
+    return HttpResponse(response)
 
 def receipt_json(request):
     check_post(request)
     mediciuser = check_auth(request)
 
     json = request.POST[RECEIPT_JSON_PARAMETER]
-    medici_system.receipt_json(mediciuser, json)
+    response = medici_system.receipt_json(mediciuser, json)
 
-    return HttpResponse(SUCESS_MESSAGE)
+    return HttpResponse(response)
 
 def user_create(request):
     check_post(request)
 
     user_info = request.POST[USER_INFO_PARAMETER]
-    medici_system.user_create(user_info)
+    response = medici_system.user_create(user_info)
 
-    return HttpResponse(SUCESS_MESSAGE)
+    return HttpResponse(response)
 
 def user_update(request):
     check_post(request)
     mediciuser = check_auth(request)
 
     user_info = request.POST[USER_INFO_PARAMETER]
-    medici_system.user_update(mediciuser, user_info)
+    response = medici_system.user_update(mediciuser, user_info)
 
-    return HttpResponse(SUCESS_MESSAGE)
+    return HttpResponse(response)
 
 def user_last_updated(request):
     check_post(request)
     mediciuser = check_auth(request)
 
-    return HttpResponse(medici_system.user_last_updated(mediciuser))
+    response = medici_system.user_last_updated(mediciuser)
+
+    return HttpResponse(response)
 
 def user_fetch(request):
     check_post(request)
     mediciuser = check_auth(request)
 
-    return HttpResponse(medici_system.user_fetch(mediciuser))
+    response = medici_system.user_fetch(mediciuser)
+
+    return HttpResponse(response)
