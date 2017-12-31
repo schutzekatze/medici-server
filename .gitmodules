@@ -1,0 +1,3 @@
+[submodule "medici_system/system/receipts/receipt2text"]
+	path = medici_system/system/receipts/receipt2text
+	url = https://github.com/lucko515/receipt2text

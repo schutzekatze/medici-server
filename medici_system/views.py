@@ -8,6 +8,7 @@ def check_post(request):
         raise Http404
 
 def check_auth(request):
+    '''
     if request.user.is_authenticated:
         return request.user.mediciuser
 
@@ -19,15 +20,16 @@ def check_auth(request):
 
     login(request, user)
     return request.user.mediciuser
+    '''
 
 def receipt_image(request):
     check_post(request)
     mediciuser = check_auth(request)
 
-    image = request.FILES['image']
-    medici_system.receipt_image(mediciuser, image)
+    image = request.body #request.FILES['image'].read()
+    text = medici_system.receipt_image(mediciuser, image)
 
-    return HttpResponse('Success.')
+    return HttpResponse(text)
 
 def receipt_text(request):
     check_post(request)

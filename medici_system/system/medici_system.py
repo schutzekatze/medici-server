@@ -1,13 +1,16 @@
 from decimal import Decimal
-from .receipts.image2text.image2text import image2text
-from .receipts.text2json.text2json import text2json
+from .receipts.receipt2text.ocr_inference import inference
+import cv2
+import numpy
 
 def receipt_image(mediciuser, image):
-    text = image2text(image)
-    json = text2json(text)
+    img = cv2.imdecode(numpy.fromstring(image, numpy.uint8), 1)
+    cv2.imwrite('tmp.jpg', img)
+    text = inference('tmp.jpg')
 
-    mediciuser.balance += Decimal(json)
-    mediciuser.save()
+    print(text)
+
+    return text
 
 def receipt_text(mediciuser, text):
     pass
@@ -19,11 +22,10 @@ def user_create(user_info):
     pass
 
 def user_update(mediciuser, user_info):
-    mediciuser.balance = Decimal(user_info)
-    mediciuser.save()
+    pass
 
 def user_last_updated(mediciuser):
     return 'Not implemented.'
 
 def user_fetch(mediciuser):
-    return str(mediciuser.balance)
+    return 'Not implemented'
