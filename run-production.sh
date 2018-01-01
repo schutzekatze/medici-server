@@ -1,18 +1,31 @@
 #!/bin/bash
 
+MEDICI_SERVER=medici_server
+
 PROJECT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 STATIC_DIR="/srv/http/static"
+MEDIA_DIR="/srv/http/media"
 
-cat $PROJECT_DIR/medici_server/nginx_template.conf | sed "s~<project_dir>~$PROJECT_DIR~g" \
->$PROJECT_DIR/medici_server/nginx.conf
+templates=("nginx_template.conf" "uwsgi_template.ini" "settings_template.py")
+configs=("nginx.conf" "uwsgi.ini" "settings.py")
+counter=0
+for template in ${templates[@]}
+do
+    config=${configs[$counter]}
 
-cat $PROJECT_DIR/medici_server/uwsgi_template.ini | sed "s~<project_dir>~$PROJECT_DIR~g" \
->$PROJECT_DIR/medici_server/uwsgi.ini
+    content=$(cat $PROJECT_DIR/$MEDICI_SERVER/$template | sed "s~<project_dir>~$PROJECT_DIR~g")
+    echo "$content" >$PROJECT_DIR/$MEDICI_SERVER/$config
 
-cat $PROJECT_DIR/medici_server/settings_template.py | sed "s~<static_dir>~'$STATIC_DIR'~g" \
->$PROJECT_DIR/medici_server/settings.py
+    content=$(cat $PROJECT_DIR/$MEDICI_SERVER/$config | sed "s~<static_dir>~$STATIC_DIR~g")
+    echo "$content" >$PROJECT_DIR/$MEDICI_SERVER/$config
+
+    content=$(cat $PROJECT_DIR/$MEDICI_SERVER/$config | sed "s~<media_dir>~$MEDIA_DIR~g")
+    echo "$content" >$PROJECT_DIR/$MEDICI_SERVER/$config
+
+    ((counter++))
+done;
 
 sudo python manage.py collectstatic
 
 sudo systemctl start nginx
-uwsgi --ini medici_server/uwsgi.ini
+uwsgi --ini $MEDICI_SERVER/uwsgi.ini

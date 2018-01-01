@@ -125,4 +125,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = <static_dir>
+STATIC_ROOT = '<static_dir>'
