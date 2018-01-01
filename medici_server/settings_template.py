@@ -125,4 +125,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/srv/http/static'
+STATIC_ROOT = <static_dir>
