@@ -1,21 +1,22 @@
 from django.http import Http404, HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.conf import settings
-
 from .system import medici_system
-
 import os
 import configparser
+import json
+
 medici_config = configparser.ConfigParser()
 medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.cfg'))
 
 USER_USERNAME_PARAMETER = medici_config['Communication']['user_username_parameter']
 USER_PASSWORD_PARAMETER = medici_config['Communication']['user_password_parameter']
-USER_INFO_PARAMETER = medici_config['Communication']['user_info_parameter']
+USER_DATA_PARAMETER = medici_config['Communication']['user_data_parameter']
+USER_FIELDS_PARAMETER = medici_config['Communication']['user_fields_parameter']
 
 RECEIPT_IMAGE_PARAMETER = medici_config['Communication']['receipt_image_parameter']
 RECEIPT_TEXT_PARAMETER = medici_config['Communication']['receipt_text_parameter']
-RECEIPT_JSON_PARAMETER = medici_config['Communication']['receipt_json_parameter']
+RECEIPT_DATA_PARAMETER = medici_config['Communication']['receipt_data_parameter']
 
 def check_post(request):
     if request.method != 'POST':
@@ -34,12 +35,42 @@ def check_auth(request):
     login(request, user)
     return request.user.mediciuser
 
+def user_create(request):
+    check_post(request)
+
+    user_data = json.loads(request.POST[USER_DATA_PARAMETER])
+    response = medici_system.user_create(user_data)
+    response = json.dumps(response)
+
+    return HttpResponse(response)
+
+def user_update(request):
+    check_post(request)
+    mediciuser = check_auth(request)
+
+    user_data = json.loads(request.POST[USER_DATA_PARAMETER])
+    response = medici_system.user_update(mediciuser, user_data)
+    response = json.dumps(response)
+
+    return HttpResponse(response)
+
+def user_fetch(request):
+    check_post(request)
+    mediciuser = check_auth(request)
+
+    user_fields = json.loads(request.POST[USER_FIELDS_PARAMETER])
+    response = medici_system.user_fetch(mediciuser, user_fields)
+    response = json.dumps(response)
+
+    return HttpResponse(response)
+
 def receipt_image(request):
     check_post(request)
     mediciuser = check_auth(request)
 
     image = request.FILES[RECEIPT_IMAGE_PARAMETER]
     response = medici_system.receipt_image(mediciuser, image)
+    response = json.dumps(response)
 
     return HttpResponse(response)
 
@@ -49,47 +80,16 @@ def receipt_text(request):
 
     text = request.POST[RECEIPT_TEXT_PARAMETER]
     response = medici_system.receipt_text(mediciuser, text)
+    response = json.dumps(response)
 
     return HttpResponse(response)
 
-def receipt_json(request):
+def receipt_data(request):
     check_post(request)
     mediciuser = check_auth(request)
 
-    json = request.POST[RECEIPT_JSON_PARAMETER]
-    response = medici_system.receipt_json(mediciuser, json)
-
-    return HttpResponse(response)
-
-def user_create(request):
-    check_post(request)
-
-    user_info = request.POST[USER_INFO_PARAMETER]
-    response = medici_system.user_create(user_info)
-
-    return HttpResponse(response)
-
-def user_update(request):
-    check_post(request)
-    mediciuser = check_auth(request)
-
-    user_info = request.POST[USER_INFO_PARAMETER]
-    response = medici_system.user_update(mediciuser, user_info)
-
-    return HttpResponse(response)
-
-def user_last_updated(request):
-    check_post(request)
-    mediciuser = check_auth(request)
-
-    response = medici_system.user_last_updated(mediciuser)
-
-    return HttpResponse(response)
-
-def user_fetch(request):
-    check_post(request)
-    mediciuser = check_auth(request)
-
-    response = medici_system.user_fetch(mediciuser)
+    data = json.loads(request.POST[RECEIPT_DATA_PARAMETER])
+    response = medici_system.receipt_data(mediciuser, data)
+    response = json.dumps(response)
 
     return HttpResponse(response)

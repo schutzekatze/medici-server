@@ -1,2 +1,2 @@
 def image2text(image):
-    return ''
+    return "Empty"

@@ -6,6 +6,7 @@ from django.dispatch import receiver
 class MediciUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits=20, decimal_places=10, default=0)
+    last_updated = models.DateTimeField()
 
     @receiver(post_save, sender=User)
     def create_user(sender, instance, created, **kwargs):
@@ -51,6 +52,6 @@ class Receipt(models.Model):
     datetime = models.DateTimeField()
 
 class ReceiptItem(models.Model):
-    receipt = models.ForegnKey(Receipt, on_delete=models.CASCADE)
+    receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
     shop_item = models.ForeignKey(ShopItem, on_delete=models.CASCADE)
     price_at_the_time = models.DecimalField(max_digits=20, decimal_places=10)
