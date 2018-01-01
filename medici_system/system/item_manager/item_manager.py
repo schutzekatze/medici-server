@@ -1,2 +1,6 @@
+import logging
+
+logger = logging.getLogger('Item Manager')
+
 def process_receipt_json(json):
-    print('Item manager received json: ' + json)
+    logger.info('Received json: ' + json)
