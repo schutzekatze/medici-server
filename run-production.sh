@@ -1,10 +1,11 @@
 #!/bin/bash
 
-MEDICI_SERVER=medici_server
-
 PROJECT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+MAIN_APP=medici_server
+DOMAIN_NAME=medici-assistant.ddns.net
 STATIC_DIR="/srv/http/static"
 MEDIA_DIR="/srv/http/media"
+NGINX_SERVERS_DIR="/etc/nginx/sites-enabled"
 
 templates=("nginx_template.conf" "uwsgi_template.ini" "settings_template.py")
 configs=("nginx.conf" "uwsgi.ini" "settings.py")
@@ -13,19 +14,24 @@ for template in ${templates[@]}
 do
     config=${configs[$counter]}
 
-    content=$(cat $PROJECT_DIR/$MEDICI_SERVER/$template | sed "s~<project_dir>~$PROJECT_DIR~g")
-    echo "$content" >$PROJECT_DIR/$MEDICI_SERVER/$config
+    content=$(cat $PROJECT_DIR/$MAIN_APP/$template)
 
-    content=$(cat $PROJECT_DIR/$MEDICI_SERVER/$config | sed "s~<static_dir>~$STATIC_DIR~g")
-    echo "$content" >$PROJECT_DIR/$MEDICI_SERVER/$config
+    content=$(echo "$content" \
+            | sed "s~<project_dir>~$PROJECT_DIR~g" \
+            | sed "s~<main_app>~$MAIN_APP~g" \
+            | sed "s~<domain_name>~$DOMAIN_NAME~g" \
+            | sed "s~<static_dir>~$STATIC_DIR~g" \
+            | sed "s~<media_dir>~$MEDIA_DIR~g" \
+            )
 
-    content=$(cat $PROJECT_DIR/$MEDICI_SERVER/$config | sed "s~<media_dir>~$MEDIA_DIR~g")
-    echo "$content" >$PROJECT_DIR/$MEDICI_SERVER/$config
+    echo "$content" >$PROJECT_DIR/$MAIN_APP/$config
 
     ((counter++))
 done;
 
 sudo python manage.py collectstatic
 
+sudo ln -sf $PROJECT_DIR/$MAIN_APP/nginx.conf $NGINX_SERVERS_DIR/$MAIN_APP.conf
 sudo systemctl start nginx
-uwsgi --ini $MEDICI_SERVER/uwsgi.ini
+
+uwsgi --ini $MAIN_APP/uwsgi.ini

@@ -21,6 +21,7 @@ class MediciUser(models.Model):
         return self.user.username
 
 class Shop(models.Model):
+    name = models.CharField(max_length=256)
     address = models.CharField(max_length=256)
 
     def __str__(self):
@@ -42,6 +43,7 @@ class ShopItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=20, decimal_places=10)
+    last_updated = models.DateTimeField()
 
     def __str__(self):
         return self.name
