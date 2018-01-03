@@ -41,3 +41,4 @@ sudo ln -sf $PROJECT_DIR/$MAIN_APP/nginx.conf $NGINX_SERVERS_DIR/$MAIN_APP.conf
 sudo systemctl start nginx
 
 sudo uwsgi --ini $MAIN_APP/uwsgi.ini --uid=$USER --gid=$USER
+sudo rm -f $SOCKET_PATH
