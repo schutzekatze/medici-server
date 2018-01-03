@@ -1,1 +1,4 @@
 *.pyc
+medici_server/nginx.conf
+medici_server/settings.py
+medici_server/uwsgi.ini
