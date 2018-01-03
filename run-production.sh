@@ -3,9 +3,12 @@
 PROJECT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 MAIN_APP=medici_server
 DOMAIN_NAME=medici.ddns.net
-STATIC_DIR="/srv/http/static"
-MEDIA_DIR="/srv/http/media"
-NGINX_SERVERS_DIR="/etc/nginx/sites-enabled"
+STATIC_DIR=/srv/http/static
+MEDIA_DIR=/srv/http/media
+
+NGINX_SERVERS_DIR=/etc/nginx/sites-enabled
+SOCKET_PATH=/tmp/nginx.sock
+NGINX_USER=http
 
 templates=("nginx_template.conf" "uwsgi_template.ini" "settings_template.py")
 configs=("nginx.conf" "uwsgi.ini" "settings.py")
@@ -22,6 +25,8 @@ do
             | sed "s~<domain_name>~$DOMAIN_NAME~g" \
             | sed "s~<static_dir>~$STATIC_DIR~g" \
             | sed "s~<media_dir>~$MEDIA_DIR~g" \
+            | sed "s~<socket_path>~$SOCKET_PATH~g" \
+            | sed "s~<nginx_user>~$NGINX_USER~g" \
             )
 
     echo "$content" >$PROJECT_DIR/$MAIN_APP/$config
@@ -35,4 +40,4 @@ sudo mkdir -p $NGINX_SERVERS_DIR
 sudo ln -sf $PROJECT_DIR/$MAIN_APP/nginx.conf $NGINX_SERVERS_DIR/$MAIN_APP.conf
 sudo systemctl start nginx
 
-uwsgi --ini $MAIN_APP/uwsgi.ini
+sudo uwsgi --ini $MAIN_APP/uwsgi.ini --uid=$USER --gid=$USER
