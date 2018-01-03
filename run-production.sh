@@ -7,7 +7,7 @@ STATIC_DIR=/srv/http/static
 MEDIA_DIR=/srv/http/media
 
 NGINX_SERVERS_DIR=/etc/nginx/sites-enabled
-SOCKET_PATH=/tmp/nginx.sock
+SOCKET_PATH=/tmp/medici_server.sock
 NGINX_USER=http
 
 templates=("nginx_template.conf" "uwsgi_template.ini" "settings_template.py")
