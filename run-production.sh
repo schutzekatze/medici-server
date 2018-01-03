@@ -31,6 +31,7 @@ done;
 
 sudo python manage.py collectstatic
 
+sudo mkdir -p $NGINX_SERVERS_DIR
 sudo ln -sf $PROJECT_DIR/$MAIN_APP/nginx.conf $NGINX_SERVERS_DIR/$MAIN_APP.conf
 sudo systemctl start nginx
 
