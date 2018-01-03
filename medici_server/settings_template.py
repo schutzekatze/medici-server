@@ -25,7 +25,7 @@ SECRET_KEY = 'x8qms@hw2xw9zrw*x2+vn33gpy*16l^5l&4bxftn7-p3@j%!_6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '0.0.0.0', '<domain_name>' ]
+ALLOWED_HOSTS = [ '127.0.0.1', '<domain_name>' ]
 
 
 # Application definition
@@ -126,3 +126,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = '<static_dir>'
+
+# HTTPS
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True 

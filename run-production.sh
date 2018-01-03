@@ -2,7 +2,7 @@
 
 PROJECT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 MAIN_APP=medici_server
-DOMAIN_NAME=medici-assistant.ddns.net
+DOMAIN_NAME=medici.ddns.net
 STATIC_DIR="/srv/http/static"
 MEDIA_DIR="/srv/http/media"
 NGINX_SERVERS_DIR="/etc/nginx/sites-enabled"
