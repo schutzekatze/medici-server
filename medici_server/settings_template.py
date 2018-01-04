@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'medici_server.urls'
+ROOT_URLCONF = '<main_app>.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'medici_server.wsgi.application'
+WSGI_APPLICATION = '<main_app>.wsgi.application'
 
 
 # Database
@@ -131,4 +131,4 @@ STATIC_ROOT = '<static_dir>'
 
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True 
+CSRF_COOKIE_SECURE = True

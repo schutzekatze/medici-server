@@ -3,11 +3,11 @@
 PROJECT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 MAIN_APP=medici_server
 DOMAIN_NAME=medici.ddns.net
-STATIC_DIR=/srv/http/static
-MEDIA_DIR=/srv/http/media
+STATIC_DIR=/srv/http/$MAIN_APP/static
+MEDIA_DIR=/srv/http/$MAIN_APP/media
 
 NGINX_SERVERS_DIR=/etc/nginx/sites-enabled
-SOCKET_PATH=/tmp/medici_server.sock
+SOCKET_PATH=/tmp/$MAIN_APP.sock
 NGINX_USER=http
 
 templates=("nginx_template.conf" "uwsgi_template.ini" "settings_template.py")
