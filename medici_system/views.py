@@ -7,7 +7,7 @@ import configparser
 import json
 
 medici_config = configparser.ConfigParser()
-medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.cfg'))
+medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.ini'))
 
 USER_USERNAME_PARAMETER = medici_config['Communication']['user_username_parameter']
 USER_PASSWORD_PARAMETER = medici_config['Communication']['user_password_parameter']

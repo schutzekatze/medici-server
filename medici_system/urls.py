@@ -6,7 +6,7 @@ from . import views
 import os
 import configparser
 medici_config = configparser.ConfigParser()
-medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.cfg'))
+medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.ini'))
 
 USER_CREATE_URL = medici_config['Communication']['user_create_url']
 USER_UPDATE_URL = medici_config['Communication']['user_update_url']
