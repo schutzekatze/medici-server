@@ -9,14 +9,14 @@ import json
 medici_config = configparser.ConfigParser()
 medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.ini'))
 
-USER_USERNAME_PARAMETER = medici_config['Communication']['user_username_parameter']
-USER_PASSWORD_PARAMETER = medici_config['Communication']['user_password_parameter']
-USER_DATA_PARAMETER = medici_config['Communication']['user_data_parameter']
-USER_FIELDS_PARAMETER = medici_config['Communication']['user_fields_parameter']
+USER_USERNAME_PARAMETER = medici_config['communication']['user_username_param']
+USER_PASSWORD_PARAMETER = medici_config['communication']['user_password_param']
+USER_DATA_PARAMETER = medici_config['communication']['user_data_param']
+USER_FIELDS_PARAMETER = medici_config['communication']['user_fields_param']
 
-RECEIPT_IMAGE_PARAMETER = medici_config['Communication']['receipt_image_parameter']
-RECEIPT_TEXT_PARAMETER = medici_config['Communication']['receipt_text_parameter']
-RECEIPT_DATA_PARAMETER = medici_config['Communication']['receipt_data_parameter']
+RECEIPT_IMAGE_PARAMETER = medici_config['communication']['receipt_image_param']
+RECEIPT_TEXT_PARAMETER = medici_config['communication']['receipt_text_param']
+RECEIPT_DATA_PARAMETER = medici_config['communication']['receipt_data_param']
 
 def check_post(request):
     if request.method != 'POST':

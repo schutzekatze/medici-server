@@ -8,13 +8,13 @@ import configparser
 medici_config = configparser.ConfigParser()
 medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.ini'))
 
-USER_CREATE_URL = medici_config['Communication']['user_create_url']
-USER_UPDATE_URL = medici_config['Communication']['user_update_url']
-USER_FETCH_URL = medici_config['Communication']['user_fetch_url']
+USER_CREATE_URL = medici_config['communication']['user_create_url']
+USER_UPDATE_URL = medici_config['communication']['user_update_url']
+USER_FETCH_URL = medici_config['communication']['user_fetch_url']
 
-RECEIPT_IMAGE_URL = medici_config['Communication']['receipt_image_url']
-RECEIPT_TEXT_URL = medici_config['Communication']['receipt_text_url']
-RECEIPT_DATA_URL = medici_config['Communication']['receipt_data_url']
+RECEIPT_IMAGE_URL = medici_config['communication']['receipt_image_url']
+RECEIPT_TEXT_URL = medici_config['communication']['receipt_text_url']
+RECEIPT_DATA_URL = medici_config['communication']['receipt_data_url']
 
 app_name = 'medici_system'
 urlpatterns = [
