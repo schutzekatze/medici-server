@@ -10,6 +10,7 @@ def process_receipt_data(mediciuser, data):
     logger.info("Received data:\n" + data + "\nProcessing...")
 
     mediciuser.balance -= data['total']
+    mediciuser.save()
 
     logger.info("Data processed successfully.")
 

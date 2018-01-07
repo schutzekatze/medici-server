@@ -68,7 +68,7 @@ def receipt_image(request):
     check_post(request)
     mediciuser = check_auth(request)
 
-    image = request.FILES[RECEIPT_IMAGE_PARAMETER]
+    image = request.FILES[RECEIPT_IMAGE_PARAMETER].read()
     response = medici_system.receipt_image(mediciuser, image)
     response = json.dumps(response)
 
@@ -78,7 +78,7 @@ def receipt_text(request):
     check_post(request)
     mediciuser = check_auth(request)
 
-    text = request.POST[RECEIPT_TEXT_PARAMETER]
+    text = json.loads(request.POST[RECEIPT_TEXT_PARAMETER])
     response = medici_system.receipt_text(mediciuser, text)
     response = json.dumps(response)
 

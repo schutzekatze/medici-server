@@ -20,23 +20,32 @@ def receipt_image(mediciuser, image):
     text = image2text(image)
     data = text2data(text)
 
-    return process_data(mediciuser, data)
+    user_change_data = process_data(mediciuser, data)
+
+    return SUCCESS_MESSAGE
 
 def receipt_text(mediciuser, text):
     logger.info("Received receipt text from <" + mediciuser.user.username + ">")
 
+    text = text['receipt_text']
     data = text2data(text)
 
-    return process_data(mediciuser, data)
+    user_change_data = process_data(mediciuser, data)
+
+    return SUCCESS_MESSAGE
 
 def receipt_data(mediciuser, data):
     logger.info("Received receipt data from <" + mediciuser.user.username + ">")
 
-    return process_data(mediciuser, data)
+    data = data['receipt_data']
+    user_change_data = process_data(mediciuser, data)
+
+    return SUCCESS_MESSAGE
 
 def user_create(user_data):
     logger.info("Received user create request for <" + user_data['username'] + ">")
 
+    user_data = user_data['user_data']
     mediciuser = user_manager.user_create(user_data)
 
     return SUCESS_MESSAGE
@@ -44,6 +53,7 @@ def user_create(user_data):
 def user_update(mediciuser, user_data):
     logger.info("Received user update request from <" + mediciuser.user.username + ">")
 
+    user_data = user_data['user_data']
     user_manager.user_update(mediciuser, user_data)
 
     return SUCESS_MESSAGE
@@ -51,4 +61,5 @@ def user_update(mediciuser, user_data):
 def user_fetch(mediciuser, user_fields):
     logger.info("Received user fetch request from <" + mediciuser.user.username + ">")
 
+    user_fields = user_fields['user_fields']
     return user_manager.user_fetch(mediciuser, user_fields)
