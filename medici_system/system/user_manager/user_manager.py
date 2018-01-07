@@ -1,32 +1,38 @@
-import logging
 from django.contrib.auth.models import User
-from ...models import MediciUser
+
+import logging
 import datetime
 from decimal import Decimal
 
-logger = logging.getLogger("User Manager")
+from ...models import MediciUser
+
+logger = logging.getLogger(__name__)
 
 def process_receipt_data(mediciuser, data):
-    logger.info("Received data:\n" + data + "\nProcessing...")
+    logger.info("Received data:\n" + str(data) + "\nProcessing...")
 
-    mediciuser.balance -= data['total']
+    mediciuser.balance -= Decimal(data['total'])
     mediciuser.save()
 
     logger.info("Data processed successfully.")
 
 def user_create(user_data):
-    logger.info("Creating user <" + user_data.userame + ">...")
+    logger.info("Creating user <" + user_data['username'] + ">...")
 
-    User.objects.create_user(
+    user = User.objects.create_user(
                             username=user_data['username'],
                             password=user_data['password'],
-                            email=user_data['email']
+                            email=user_data['email'],
                             )
 
-    logger.info("User <" + user_data.userame + "> created successfully.")
+    if 'balance' in user_data:
+        user.mediciuser.balance = user_data['balance']
+        user.mediciuser.save()
+
+    logger.info("User <" + user.username + "> created successfully.")
 
 def user_update(mediciuser, user_data):
-    logger.info("Updating user <" + user_data.userame + ">...")
+    logger.info("Updating user <" + mediciuser.user.username + ">...")
 
     if 'username' in user_data:
         mediciuser.user.username = user_data['username']
@@ -43,7 +49,7 @@ def user_update(mediciuser, user_data):
     logger.info("User <" + medici.user.username + "> updated successfully.")
 
 def user_fetch(mediciuser, user_fields):
-    logger.info("Fetching user <" + user_data.userame + ">...")
+    logger.info("Fetching user <" + medici.user.username + ">...")
 
     data = {}
 

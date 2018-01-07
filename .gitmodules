@@ -1,6 +1,6 @@
-[submodule "medici_system/system/medici_config"]
-	path = medici_system/system/medici_config
-	url = https://github.com/schutzekatze/medici-config
 [submodule "medici_system/system/receipts/image2text/receipt2text"]
 	path = medici_system/system/receipts/image2text/receipt2text
 	url = https://github.com/lucko515/receipt2text
+[submodule "medici_config"]
+	path = medici_config
+	url = https://github.com/schutzekatze/medici-config

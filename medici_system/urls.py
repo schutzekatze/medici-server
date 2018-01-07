@@ -1,20 +1,19 @@
 from django.urls import path
 from django.conf import settings
 
+import os
+
 from . import views
 
-import os
-import configparser
-medici_config = configparser.ConfigParser()
-medici_config.read(os.path.join(settings.BASE_DIR, 'medici_system/system/medici_config/medici.ini'))
+MEDICI_CONFIG = settings.MEDICI_CONFIG
 
-USER_CREATE_URL = medici_config['communication']['user_create_url']
-USER_UPDATE_URL = medici_config['communication']['user_update_url']
-USER_FETCH_URL = medici_config['communication']['user_fetch_url']
+USER_CREATE_URL = MEDICI_CONFIG['communication']['user_create_url']
+USER_UPDATE_URL = MEDICI_CONFIG['communication']['user_update_url']
+USER_FETCH_URL = MEDICI_CONFIG['communication']['user_fetch_url']
 
-RECEIPT_IMAGE_URL = medici_config['communication']['receipt_image_url']
-RECEIPT_TEXT_URL = medici_config['communication']['receipt_text_url']
-RECEIPT_DATA_URL = medici_config['communication']['receipt_data_url']
+RECEIPT_IMAGE_URL = MEDICI_CONFIG['communication']['receipt_image_url']
+RECEIPT_TEXT_URL = MEDICI_CONFIG['communication']['receipt_text_url']
+RECEIPT_DATA_URL = MEDICI_CONFIG['communication']['receipt_data_url']
 
 app_name = 'medici_system'
 urlpatterns = [

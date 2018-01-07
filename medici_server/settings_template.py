@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,11 +27,10 @@ SECRET_KEY = 'x8qms@hw2xw9zrw*x2+vn33gpy*16l^5l&4bxftn7-p3@j%!_6'
 if os.environ.get('DJANGO_DEBUG'):
     print("Debug is enabled.")
     DEBUG = True
+    ALLOWED_HOSTS = [ '*' ]
 else:
     DEBUG = False
-
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', '[::1]', '<domain_name>' ]
-
+    ALLOWED_HOSTS = [ '<domain_name>' ]
 
 # Application definition
 
@@ -144,3 +144,33 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '[%(levelname)s] %(asctime)s %(module)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'medici_system': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+}
+
+MEDICI_CONFIG = configparser.ConfigParser()
+MEDICI_CONFIG.read(os.path.join(BASE_DIR, 'medici_config/medici.ini'))

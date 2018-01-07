@@ -1,2 +1,2 @@
 def text2data(text):
-    return {}
+    return { 'total' : text }
