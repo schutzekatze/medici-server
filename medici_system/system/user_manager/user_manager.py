@@ -9,15 +9,13 @@ from ...models import MediciUser
 logger = logging.getLogger(__name__)
 
 def process_receipt_data(mediciuser, data):
-    logger.info("Received data:\n" + str(data) + "\nProcessing...")
+    logger.info("Processing data.")
 
     mediciuser.balance -= Decimal(data['total'])
     mediciuser.save()
 
-    logger.info("Data processed successfully.")
-
 def user_create(user_data):
-    logger.info("Creating user <" + user_data['username'] + ">...")
+    logger.info("Creating user <" + user_data['username'] + ">.")
 
     user = User.objects.create_user(
                             username=user_data['username'],
@@ -29,10 +27,8 @@ def user_create(user_data):
         user.mediciuser.balance = user_data['balance']
         user.mediciuser.save()
 
-    logger.info("User <" + user.username + "> created successfully.")
-
 def user_update(mediciuser, user_data):
-    logger.info("Updating user <" + mediciuser.user.username + ">...")
+    logger.info("Updating user <" + mediciuser.user.username + ">.")
 
     if 'username' in user_data:
         mediciuser.user.username = user_data['username']
@@ -46,10 +42,8 @@ def user_update(mediciuser, user_data):
 
     mediciuser.user.save()
 
-    logger.info("User <" + medici.user.username + "> updated successfully.")
-
 def user_fetch(mediciuser, user_fields):
-    logger.info("Fetching user <" + medici.user.username + ">...")
+    logger.info("Fetching user <" + medici.user.username + ">.")
 
     data = {}
 
@@ -61,7 +55,5 @@ def user_fetch(mediciuser, user_fields):
         data['balance'] = mediciuser.balance
     if 'last_updated' in user_fields:
         data['last_updated'] = mediciuser.last_updated
-
-    logger.info("User <" + medici.user.username + "> fetched successfully.")
 
     return data
