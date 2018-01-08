@@ -2,7 +2,7 @@ medici_server/nginx.conf
 medici_server/settings.py
 medici_server/uwsgi.ini
 
-system.log
+system.log*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
