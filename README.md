@@ -1,2 +1,2 @@
 # medici-server
-Medici Assistant Backend
+Medici server infrastructure
