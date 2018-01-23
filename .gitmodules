@@ -1,3 +1,6 @@
 [submodule "medici_config"]
 	path = medici_config
 	url = https://github.com/schutzekatze/medici-config
+[submodule "medici_system/system"]
+	path = medici_system/system
+	url = https://github.com/schutzekatze/medici-system
