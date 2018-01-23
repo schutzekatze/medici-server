@@ -1,6 +1,5 @@
 #!/bin/bash
 
-./config.sh
 source config.sh
 
 sudo python manage.py collectstatic
