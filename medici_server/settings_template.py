@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -180,5 +179,6 @@ LOGGING = {
     }
 }
 
+import configparser
 MEDICI_CONFIG = configparser.ConfigParser()
 MEDICI_CONFIG.read(os.path.join(BASE_DIR, 'medici_config/medici.ini'))

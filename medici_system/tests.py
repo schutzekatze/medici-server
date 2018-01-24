@@ -1,1 +1,1 @@
-import .system.tests.tests
+from .system.tests import tests

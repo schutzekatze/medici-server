@@ -1,1 +1,1 @@
-import .system.db.models
+from .system.db import models
