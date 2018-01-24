@@ -1,9 +1,10 @@
 #!/bin/bash
 
-source config.sh
-
 touch system.log
 touch system.log.1
+
+source config.sh
+
 sudo python manage.py collectstatic
 
 sudo mkdir -p $NGINX_SERVERS_DIR
