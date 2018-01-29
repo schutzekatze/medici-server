@@ -1,0 +1,112 @@
+@font-face
+{
+  font-family: Proxima;
+  src: url(../fonts/ProximaNova-Thin.ttf) format("truetype");
+}
+
+html
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(to left, #19B247FF, #FFF95FFF);
+}
+
+header
+{
+  margin: 0px;
+  padding: 1% 0px 0px 0px;
+}
+
+#medici
+{
+  text-align: center;
+  font-family: Proxima;
+  color: rgba(20, 20, 20, 0.6);
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+section
+{
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+#intro
+{
+  font-family: Proxima;
+  margin-top: 13%;
+  font-size: 64px;
+  color: rgba(20, 20, 20, 0.9);
+}
+
+#stat
+{
+  font-family: Proxima;
+  position: relative;
+  bottom: 20px;
+  font-size: 54px;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(20, 20, 20, 0.1);
+  border-radius: 10px;
+  padding: 0% 1%;
+  margin: 0px 38%;
+}
+
+#desc
+{
+  font-family: Proxima;
+  position: relative;
+  bottom: 68px;
+  font-size: 21px;
+  color: rgba(255, 255, 255, 1);
+}
+
+footer
+{
+  position: absolute;
+  bottom: 4px;
+  width: 100%;
+  padding: 0px;
+  position: fixed;
+}
+
+#info
+{
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(20, 20, 20, 0.7);
+  font-size: 16px;
+  text-align: center;
+}
+
+
+footer a:link
+{
+  color: rgba(20, 20, 20, 0.7);
+  text-decoration: none;
+}
+
+footer a:visited
+{
+  color: rgba(20, 20, 20, 0.7);
+  text-decoration: none;
+}
+
+footer a:hover
+{
+  color: rgba(20, 20, 20, 1);
+  transition: color 0.3s ease-out;
+}

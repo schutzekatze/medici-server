@@ -1,12 +1,46 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Medici Assistant</title>
-    </head>
+<head>
 
-    <body>
-        Hi.
-    </body>
+  <title>Medici</title>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Licni finansijski asistent" />
+  <meta name="keywords" content="licni, finansijski, asistent, medici" />
+  <meta name="author" content="Toni Paunovic" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="{% static 'medici_website/css/style.css' %}" />
+
+</head>
+
+<body>
+
+  <header>
+    <div id="medici" title="Medici">MEDICI</div>
+  </header>
+
+  <section>
+  	<div id="intro">
+      <p>Lični asistent.<br />Za lične finansije.</p>
+    </div>
+    <div id="stat">
+      <p>0</p>
+    </div>
+    <div id="desc">
+      <p>UKUPAN BROJ SKENIRANIH RAČUNA</p>
+    </div>
+  </section>
+
+
+  <footer>
+  	<div id="info">
+      <a href="https://third-foundation.com" target="_blank">&copy;2018 Foundation</a>
+    </div>
+  </footer>
+
+</body>
 
 </html>
