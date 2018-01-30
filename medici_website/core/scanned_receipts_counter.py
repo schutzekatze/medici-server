@@ -1,4 +1,12 @@
 import os
 
 def get_scanned_receipts_count():
-    return len(os.listdir('/home/flux/receipts-unlabeled'))
+    count = 0
+
+    for _, _, filenames in os.walk('/home/flux/receipts/unlabeled'):
+        count += len(filenames)
+
+    for _, _, filenames in os.walk('/home/flux/receipts/labeled-seg'):
+        count += len(filenames)
+
+    return count
