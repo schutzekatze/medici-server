@@ -1,4 +1,4 @@
-import glob
+import os
 
 def get_scanned_receipts_count():
-    return len(glob.glob('/tmp/cenec*'))
+    return len(os.listdir('/home/flux/receipts-unlabeled'))
