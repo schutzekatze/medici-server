@@ -4,3 +4,6 @@
 [submodule "medici_system/system"]
 	path = medici_system/system
 	url = https://github.com/schutzekatze/medici-system
+[submodule "medici_website"]
+	path = medici_website
+	url = https://github.com/1not/medici-website
