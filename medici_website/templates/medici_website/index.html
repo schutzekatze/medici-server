@@ -7,14 +7,15 @@
 
   <title>Medici</title>
   <meta charset="UTF-8" />
-  <meta name="description" content="Licni finansijski asistent" />
-  <meta name="keywords" content="licni, finansijski, asistent, medici" />
-  <meta name="author" content="Toni Paunovic" />
+  <meta name="description" content="Asistent za licne finansije" />
+  <meta name="keywords" content="licne, finansije, asistent, medici" />
+  <meta name="author" content="Foundation" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" type="text/css" href="{% static 'medici_website/css/style.css' %}" />
 
 </head>
+
 
 <body>
 
@@ -24,13 +25,10 @@
 
   <section>
   	<div id="intro">
-      <p>Lični asistent.<br />Za lične finansije.</p>
+      <p>Asistent za lične finansije.</p>
     </div>
     <div id="stat">
-      <p>{{ scanned_receipts_count }}</p>
-    </div>
-    <div id="desc">
-      <p>UKUPAN BROJ SKENIRANIH RAČUNA</p>
+      <p>Ukupno je skenirano <span id="num">{{ scanned_receipts_count }}</span> računa.</p>
     </div>
   </section>
 

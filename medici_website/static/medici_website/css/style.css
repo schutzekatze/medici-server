@@ -1,7 +1,20 @@
+/* General */
 @font-face
 {
   font-family: Proxima;
   src: url(../fonts/ProximaNova-Thin.ttf) format("truetype");
+}
+/* Numbers */
+@font-face
+{
+  font-family: Lato;
+  src: url(../fonts/Lato-Light.ttf) format("truetype");
+}
+/* Footer (small text) */
+@font-face
+{
+  font-family: Roboto;
+  src: url(../fonts/Roboto-Light.ttf) format("truetype");
 }
 
 html
@@ -19,7 +32,7 @@ body
   height: 100%;
   width: 100%;
   position: relative;
-  background: linear-gradient(to left, #19B247FF, #FFF95FFF);
+  background: linear-gradient(to left, rgba(45, 180, 45, 1), rgba(255, 249, 95, 1));
 }
 
 header
@@ -32,7 +45,7 @@ header
 {
   text-align: center;
   font-family: Proxima;
-  color: rgba(20, 20, 20, 0.6);
+  color: rgba(20, 20, 20, 1);
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 10px;
@@ -56,23 +69,17 @@ section
 #stat
 {
   font-family: Proxima;
-  position: relative;
-  bottom: 20px;
-  font-size: 54px;
-  color: rgba(255, 255, 255, 0.9);
-  background-color: rgba(20, 20, 20, 0.1);
-  border-radius: 10px;
-  padding: 0% 1%;
-  margin: 0px 38%;
+  font-size: 38px;
+  color: rgba(20, 20, 20, 0.8);
 }
 
-#desc
+#num
 {
-  font-family: Proxima;
-  position: relative;
-  bottom: 68px;
-  font-size: 21px;
-  color: rgba(255, 255, 255, 1);
+  font-family: Lato;
+  background-color: rgba(20, 20, 20, 0.1);
+  color: rgba(20, 20, 20, 0.8);
+  border-radius: 10px;
+  padding: 0px 8px;
 }
 
 footer
@@ -86,7 +93,7 @@ footer
 
 #info
 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto;
   color: rgba(20, 20, 20, 0.7);
   font-size: 16px;
   text-align: center;
@@ -108,5 +115,8 @@ footer a:visited
 footer a:hover
 {
   color: rgba(20, 20, 20, 1);
-  transition: color 0.3s ease-out;
+  -webkit-transition: color 0.3s linear;
+  -moz-transition: color 0.3s linear;
+  -o-transition: color 0.3s linear;
+  transition: color 0.3s linear;
 }
